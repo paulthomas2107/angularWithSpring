@@ -42,7 +42,7 @@ public class ServerApplication {
 					"http://localhost:8080/server/image/3.png",
 					Status.SERVER_UP));
 			serverRepo.save(new Server(null,
-					"192.168.0.160",
+					"192.168.0.161",
 					"Red Hat Enterprise",
 					"12 TB",
 					"Mail Server",
