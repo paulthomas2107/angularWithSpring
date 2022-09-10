@@ -6,6 +6,8 @@ import io.getarrays.server.model.Server;
 import io.getarrays.server.service.implementation.ServerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import static org.springframework.http.HttpStatus.*;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,7 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 @RestController
 @RequestMapping("/server")
 @RequiredArgsConstructor
+@Slf4j
 public class ServerResource {
 
     private final ServerServiceImpl serverService;
@@ -40,6 +43,9 @@ public class ServerResource {
 
     @GetMapping("/ping/{ipAddress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAddress") String ipAddress) throws IOException {
+        log.info("****");
+        log.info("**** IP Address fpr ping is: {}", ipAddress);
+        log.info("****");
         Server server = serverService.ping(ipAddress);
         return ResponseEntity.ok(
                 Response.builder()

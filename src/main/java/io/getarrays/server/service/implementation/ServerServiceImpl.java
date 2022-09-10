@@ -38,10 +38,16 @@ public class ServerServiceImpl implements ServerService {
     @Override
     public Server ping(String ipAddress) throws IOException {
         log.info("Pinging server IP: {}", ipAddress);
-        Server server = serverRepo.findByIpAddress(ipAddress);
+        Server server = new Server();
+        server = serverRepo.findByIpAddress(ipAddress);
+        log.info("Passed 001");
         InetAddress address = InetAddress.getByName(ipAddress);
+        log.info("Passed 002");
+
         server.setStatus(address.isReachable(10000) ? SERVER_UP : SERVER_DOWN);
+        log.info("Passed 003");
         serverRepo.save(server);
+        log.info("Passed 004");
         return server;
     }
 
